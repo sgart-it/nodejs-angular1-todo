@@ -1,0 +1,66 @@
+<div class="bg-danger" data-ng-show="te.loaded==false">
+  <h3>Error: not found</h3>
+  <a href="#/">Back</a>
+</div>
+<form name="editForm" data-ng-show="te.loaded" class="form-horizontal">
+  <div class="form-group">
+    <label for="txt-date" class="col-sm-2 control-label">Date</label>
+    <div class="col-sm-7">
+      <p class="input-group">
+        <input type="text" class="form-control" datepicker-popup="dd/MM/yyyy" data-ng-model="te.item.date" is-open="te.dtOpened['date']"
+        data-ng-required="true" close-text="Close" />
+        <span class="input-group-btn">
+          <button type="button" class="btn btn-default" data-ng-click="te.dtOpen($event,'date')">
+            <i class="glyphicon glyphicon-calendar"></i>
+          </button>
+        </span>
+      </p>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="txt-title" class="col-sm-2 control-label">Title</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="txt-title" placeholder="Title" data-ng-model="te.item.title" data-ng-required="true">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="txt-note" class="col-sm-2 control-label">Note</label>
+    <div class="col-sm-10">
+      <textarea class="form-control" id="txt-note" palceholder="Note" data-ng-model="te.item.note" rows="3"></textarea>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="txt-category" class="col-sm-2 control-label">Category</label>
+    <div class="col-sm-10">
+      <select class="form-control" id="txt-category" palceholder="category" data-ng-model="te.item.idCategory" data-ng-options="v.id as v.category for v in te.categories"
+      data-ng-required="true"></select>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-2 control-label">Completed</label>
+    <div class="col-sm-7">
+      <p class="input-group">
+        <input type="text" class="form-control" datepicker-popup="dd/MM/yyyy" data-ng-model="te.item.completed" is-open="te.dtOpened['completed']"
+        data-ng-required="false" close-text="Close" />
+        <span class="input-group-btn">
+          <button type="button" class="btn btn-default" data-ng-click="te.dtOpen($event,'completed')">
+            <i class="glyphicon glyphicon-calendar"></i>
+          </button>
+        </span>
+      </p>
+    </div>
+    <label class="col-sm-3 control-label">
+      <span data-ng-show="te.item.completed==null">not colpleted</span>
+    </label>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-5 ">Modified: {{te.item.modified | date:'dd/MM/yyyy HH:mm' : 'UTC'}}</div>
+    <div class="col-sm-5 ">Created: {{te.item.created | date:'dd/MM/yyyy HH:mm' : 'UTC'}}</div>
+  </div>
+  <div class="col-sm-offset-2 col-sm-10">
+    <button type="submit" class="btn btn-default" data-ng-click="te.save()" ng-cloak>
+      <i class="glyphicon glyphicon-floppy-disk"></i> Save</button>
+    <button type="button" class="btn btn-default" data-ng-click="te.cancel()">
+      <i class="glyphicon glyphicon-floppy-remove"></i> Cancel</button>
+  </div>
+</form>

@@ -1,0 +1,36 @@
+<div class="modal-header">
+  <h3 class="modal-title">Statistics</h3>
+</div>
+<div class="modal-body">
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table table-striped table-bordered table-condensed">
+        <thead>
+          <tr class="active">
+            <th style="width:30%">Category</th>
+            <th style="width:10%">Total</th>
+            <th style="width:60%">&#160;</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="item in ts.items">
+            <td><span style="border-left: 3px solid red;padding-left:5px;" data-ng-style="{'border-color':item.color}" data-ng-bind="item.category"></span></td>
+            <td style="text-align:right;" data-ng-bind="item.count"></td>
+            <td class="{'border-color':item.color}" ><progressbar class="progress" style="margin-bottom:5px;" max="ts.total" value="item.count" type="info"></progressbar></td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr class="active">
+            <td></td>
+            <td style="text-align:right;"><strong data-ng-bind="ts.total"></strong></td>
+            <td></td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <!--<button class="btn btn-primary" ng-click="ts.ok()">OK</button>-->
+  <button class="btn btn-warning" ng-click="ts.close()">Close</button>
+</div>

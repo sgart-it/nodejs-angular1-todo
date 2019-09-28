@@ -1,0 +1,99 @@
+<!-- per le date usare 'UTC', es: {{item.completed | date:'dd/MM/yyyy HH:mm' : 'UTC'}} -->
+<form  ng-submit="td.doSearch()" name="insertForm" class="form-inline">
+  <div class="form-group">
+    <label class="sr-only1" for="txt-search-text">Text</label>
+    <input type="text" class="form-control" id="txt-search-text" placeholder="Text" data-ng-model="td.search.text">
+  </div>
+  <div class="form-group">
+    <label class="sr-only1" for="ttxt-search-">Category</label>
+    <select class="form-control" id="txt-category" palceholder="category" data-ng-model="td.search.idCategory"
+    data-ng-options="v.id as v.category for v in td.categoriesWithBlank"></select>
+  </div>
+  <div class="form-group">
+    <label class="sr-only1" for="ttxt-search-">Status</label>
+    <select class="form-control" id="txt-status" palceholder="status" data-ng-model="td.search.status"
+    data-ng-options="v.id as v.text for v in td.statusAll"></select>
+  </div>  
+  <button type="button" class="btn btn-default" data-ng-click="td.doSearch()">
+    <span class=" glyphicon glyphicon-search"></span>
+    <span>Search</span>
+  </button>
+  <button type="button" class="btn btn-default" data-ng-click="td.clearSearch()">Clear</button>
+</form>
+<hr />
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-striped table-hover">
+      <tr class="active">
+        <th class="sortable" data-ng-click="td.setSort('id')">Nr. <i class="glyphicon" data-ng-class="td.sortClass('id')"></i></th>
+        <th>&#160;</th>
+        <th class="sortable" data-ng-click="td.setSort('date')">Date <i class="glyphicon" data-ng-class="td.sortClass('date')"></i></th>
+        <th class="sortable" data-ng-click="td.setSort('title')">Title <i class="glyphicon" data-ng-class="td.sortClass('title')"></i></th>
+        <th class="sortable" data-ng-click="td.setSort('category')">Category <i class="glyphicon" data-ng-class="td.sortClass('category')"></i></th>
+        <th>Days</th>
+        <th class="sortable" data-ng-click="td.setSort('modified')">Modified <i class="glyphicon" data-ng-class="td.sortClass('modified')"></i></th>
+        <th>&#160;</th>
+      </tr>
+      <tr data-ng-repeat="item in td.items">
+        <td>
+          <span style="border-left: 3px solid red;padding-left:5px;" data-ng-style="{'border-color':item.color}" data-ng-bind="item.id"></span>
+        </td>
+        <td>
+          <button class="btn btn-default btn-xs completed" data-ng-class="{completedon: td.isComplete(item)}" data-ng-click="td.toggle(item)"
+          popover="Toggle status {{item.completed | date:'dd/MM/yyyy' : 'UTC'}}" popover-trigger="mouseenter">
+            <i class="glyphicon glyphicon-ok"></i>
+          </button>
+        </td>
+        <td>
+          <span>{{item.date | date:'dd/MM/yyyy' : 'UTC'}}</span>
+        </td>
+        <td>
+          <a data-ng-click="td.edit(item)" popover="Edit item" popover-trigger="mouseenter" class="edit-title"><i class="glyphicon glyphicon-pencil small"></i> {{item.title}}</a>
+        </td>
+        <td>
+          <div class="btn-group" dropdown is-open="status.isopen">
+            <button type="button" class="btn btn-default btn-xs dropdown-toggle" dropdown-toggle>
+              <span class="category" data-ng-style="{'background-color':item.color}" title="{{item.category}}"></span>
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+              <li data-ng-repeat="cat in td.categories">
+                <a href="javascript:void(0)" data-ng-click="td.updateCategory(item,cat.id)"><span class="category" data-ng-style="{'background-color':cat.color}"></span> <span data-ng-bind="cat.category"></span></a>
+              </li>
+            </ul>
+          </div>
+        </td>
+        <td>{{td.duration(item)}}</td>
+        <td popover="{{item.created | date:'dd/MM/yyyy HH:mm' : 'UTC'}}" popover-trigger="mouseenter"
+        popover-title="created" popover-append-to-body="true">{{item.modified | date:'dd/MM/yyyy HH:mm' : 'UTC'}}</td>
+        <td>
+          <button class="btn btn-default btn-xs" data-ng-click="td.confirmDelete(item)" title="delete" popover="Delete item" popover-trigger="mouseenter">
+            <i class="glyphicon glyphicon-remove"></i>
+          </button>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-8">
+    <pagination total-items="td.pagination.totalItems" data-ng-model="td.pagination.pageNumber" data-items-per-page="td.pagination.pageSize"
+    data-max-size="td.pagination.maxSize" data-ng-change="td.pageChanged()" data-boundary-links="true" data-rotate="false" class="pagination-sm"></pagination>
+  </div>
+  <div class="col-md-2">
+    <div class="pagination">
+      <span data-ng-bind="td.pagination.pageNumber" class="label label-default"></span>
+      <span>/</span>
+      <span class="label label-default" data-ng-bind="td.pagination.totalItems"></span>
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="pagination">
+      <button class="btn btn-default btn-xs" data-ng-click="td.doSearch()" title="refresh" popover="Refresh list" popover-trigger="mouseenter">
+        <i class="glyphicon glyphicon-refresh"></i>
+      </button>
+    </div>
+  </div>
+</div>
+
+    

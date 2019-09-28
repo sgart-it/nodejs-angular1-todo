@@ -1,0 +1,47 @@
+body{
+  margin-top:10px;
+}
+[ng-cloak], [data-ng-cloak], .ng-cloak {
+  display: none !important;
+}
+
+.box-wait{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  z-index: 10000;
+  text-align: center;
+  color: #000;
+  background: url('/images/loading2.gif');
+}
+.box-messages {
+  position: fixed;
+  top: 55px;
+  right: 5px;
+  width: 50%;
+  z-index: 1100;
+}
+ .box-messages .badge {
+    cursor: pointer;
+  }
+.completed i {
+  color: #888;
+}
+.completedon i{
+  color: #f00;
+}
+.edit-title{
+  cursor: pointer;
+}
+.category{
+  display: inline-block;
+  width: 48px;
+  height: 18px;
+  border: 1px solid #000;
+  vertical-align: middle;
+}
+table th.sortable{
+  cursor:pointer;
+}

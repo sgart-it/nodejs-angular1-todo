@@ -1,0 +1,10 @@
+{
+  "user": "nodejs",
+  "password": "nodejs2015",
+  "server": "localhost",
+  "database": "NodeJsDB",
+  "options": {
+    "port": 1433,
+    "encrypt": false
+  }
+}
