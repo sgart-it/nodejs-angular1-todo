@@ -3,6 +3,8 @@ esempio di todo list in node js e angular 1
 
 vedi https://www.sgart.it/IT/informatica/todo-list-in-angularjs-e-nodejs/post
 
+![anteprima](todo01.png)
+
 per creare il DB MS SQL Server: /sql-scripts/mssql.sql
 
 le password di accesso sono in: /configs/mssql.json
