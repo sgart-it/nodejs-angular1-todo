@@ -14,7 +14,7 @@ var queries = {
   read: 'SELECT T.[id], [date], [title], [note], [idCategory], [category], [completed], [created], [modified]'
     + ' FROM [todos] T INNER JOIN [categories] C ON T.[idCategory]=C.[id]'
     + ' WHERE T.[id]=@id;',
-  insert: 'INSERT INTO [todos] ([date],[title],[note],[idCategory]) VALUES(@date,@title,@note,@idCategory);',
+  insert: 'INSERT INTO [todos] ([date],[title],[note],[idCategory],[created],[modified]) VALUES(@date,@title,@note,@idCategory,GETDATE(),GETDATE());',
   update: 'UPDATE [todos] SET [title]=@title,[date]=@date,[note]=@note,[idCategory]=@idCategory,[completed]=@completed,[modified]=GETDATE() WHERE [id]=@id;',
   remove: 'DELETE FROM [todos] WHERE [id]=@id;',
   toggle: 'UPDATE [todos] SET [completed]=CASE WHEN [completed] is null THEN GETDATE() ELSE null END, [modified]=GETDATE() WHERE [id]=@id;',

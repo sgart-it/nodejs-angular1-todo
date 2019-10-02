@@ -14,7 +14,7 @@
   function run($rootScope, $location, $modal, $cookies, $timeout) {
     $rootScope.wait = 0;
     $rootScope.title = 'Todo';
-    $rootScope.subTitle = 'demo todo list by sgart.it';
+    $rootScope.subTitle = 'demo todo list in nodejs by sgart.it';
 
     $rootScope.setTitle = function(title, subTitle) {
       $rootScope.title = title;
